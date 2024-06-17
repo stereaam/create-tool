@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Login from "./pages/login/Login";
+import Projects from "./pages/projects/Projects";
+import ProjectWizard from "./pages/projects/components/project-wizard/ProjectWizard";
+import React, { useState } from "react";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [isUserLogged, setIsUserLogged] = useState(true);
+	const [step, setStep] = useState(0);
+	const steps = [<Projects setStep={setStep} />, <ProjectWizard setStep={setStep} />];
+	return (
+		<div className="App">
+			{isUserLogged ? <div>{steps[step]}</div> : <Login />}
+		</div>
+	);
 }
 
 export default App;
